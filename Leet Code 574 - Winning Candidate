@@ -1,0 +1,8 @@
+Select name 
+From Candidate 
+Where id in 
+( select candidate_id
+  FROM votes
+  Group by candidate_id
+  order by count(candidate_id) DESC
+  Limit 1);
