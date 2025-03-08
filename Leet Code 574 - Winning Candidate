@@ -6,3 +6,16 @@ Where id in
   Group by candidate_id
   order by count(candidate_id) DESC
   Limit 1);
+
+Some of the compilers will not allow the above version So, applying the same logic in dfrnt way i.e wrting as cte.
+
+  with cte as
+  (select candidate_id
+  FROM votes
+  Group by candidate_id
+  order by count(candidate_id) DESC
+  Limit 1)
+
+Select name 
+From Candidate 
+Where id in (select candidate id from cte);
